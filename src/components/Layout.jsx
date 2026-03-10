@@ -8,7 +8,7 @@ const NAV = [
   { to: '/add-trade', icon: Plus,           label: 'Add Trade' },
   { to: '/trades',   icon: Table2,          label: 'Trades' },
   { to: '/day-view', icon: CalendarDays,    label: 'Day View' },
-  { to: '/reports',  icon: BarChart2,       label: 'Reports', disabled: true },
+  { to: '/reports',  icon: BarChart2,       label: 'Reports' },
 ]
 
 export default function Layout({ session }) {

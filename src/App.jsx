@@ -8,6 +8,7 @@ import TradeEntryPage from './pages/TradeEntryPage'
 import DayViewPage from './pages/DayViewPage'
 import TradeViewPage from './pages/TradeViewPage'
 import TradeDetailPage from './pages/TradeDetailPage'
+import ReportsPage from './pages/ReportsPage'
 
 function App() {
   const [session, setSession] = useState(null)
@@ -48,6 +49,7 @@ function App() {
           <Route path="trades"           element={<TradeViewPage   session={session} />} />
           <Route path="trades/:id"       element={<TradeDetailPage session={session} />} />
           <Route path="trades/:id/edit"  element={<TradeEntryPage  session={session} />} />
+          <Route path="reports"          element={<ReportsPage     session={session} />} />
         </Route>
       </Routes>
     </HashRouter>

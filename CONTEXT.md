@@ -84,7 +84,8 @@ off-the-chart/
 │   │   ├── TradeEntryPage.jsx     # Manual trade entry + edit mode ✅ BUILT
 │   │   ├── DayViewPage.jsx        # Trades grouped by day ✅ BUILT
 │   │   ├── TradeViewPage.jsx      # Sortable/filterable trade table ✅ BUILT
-│   │   └── TradeDetailPage.jsx    # Individual trade detail view ✅ BUILT
+│   │   ├── TradeDetailPage.jsx    # Individual trade detail view ✅ BUILT
+│   │   └── ReportsPage.jsx        # Reports with Overview/Breakdowns/Calendar tabs ✅ BUILT
 │   ├── App.jsx                    # HashRouter + auth guard + routes ✅ BUILT
 │   ├── index.css                  # Global styles + Tailwind ✅ BUILT
 │   └── main.jsx                   # React entry point ✅ BUILT
@@ -241,8 +242,7 @@ Claude Vision API extracts these fields and pre-fills the trade entry form for u
 ### Phase 1 — Core Dashboard & Trade Entry ✅ COMPLETE
 
 **`Layout.jsx`** — Collapsible sidebar nav
-- Dashboard, Add Trade, Trades, Day View links
-- Reports link (disabled/grayed — Phase 2)
+- Dashboard, Add Trade, Trades, Day View, Reports links
 - User email display + Sign Out
 - Collapse/expand toggle
 
@@ -302,15 +302,14 @@ Claude Vision API extracts these fields and pre-fills the trade entry form for u
 - DayViewPage expanded rows → `/trades/:id`
 - TradeViewPage rows → `/trades/:id`
 
-### Phase 2 — Reports page (NEXT)
-- [ ] Full Reports page with tabs:
-  - Performance Summary (all stats)
-  - By Symbol breakdown
-  - By Strategy breakdown
-  - By Day of Week
-  - By Trade Duration
-  - Monthly P&L breakdown
-  - Calendar View
+### Phase 2 — Reports page ✅ COMPLETE
+
+**`ReportsPage.jsx`** — Full analytics reports page
+- Global date range filter: Today / Week / Month / YTD / All / Custom (with date pickers)
+- **Overview tab:** Two-column stats grid (20 metrics) — Net P&L, Win Rate, Profit Factor, Expectancy, Avg Win/Loss, Total/Winning/Losing/Breakeven Trades, Max Consecutive Wins/Losses, Best/Worst Single Trade, Best/Worst Day, Avg Hold Time, Total Trading Days, Largest Win/Loss
+- **Breakdowns tab:** Left sidebar filter (6 views) + horizontal bar chart (Recharts, teal/red, zero-centered) + ranked table with Name/Trades/Win Rate/Net P&L/Avg Win/Avg Loss
+  - By Symbol, By Setup, By Day of Week, By Time of Day (bucketed), By Emotions & Habits, By Mistakes
+- **Calendar tab:** 4×3 full-year calendar grid, green cells for profitable days, red for losing days, P&L shown inside each cell, year prev/next navigation, click any day → Day View
 
 ### Phase 3 — AI Features
 - [ ] Screenshot parser (Claude Vision API)

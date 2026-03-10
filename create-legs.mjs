@@ -32,14 +32,17 @@ async function main() {
   if (fetchErr) { console.error('Fetch error:', fetchErr.message); process.exit(1) }
   console.log(`Found ${trades.length} trades`)
 
-  // ── Check for existing legs to avoid duplicates ────────────────────────────
-  console.log('Checking existing legs…')
-  const { data: existingLegs } = await supabase
+  // ── Clear all existing legs for this user ──────────────────────────────────
+  console.log('Clearing existing legs…')
+  const { error: delErr, count: delCount } = await supabase
     .from('trade_legs')
-    .select('trade_id, action')
+    .delete({ count: 'exact' })
+    .eq('user_id', trades[0]?.user_id ?? '')
+  if (delErr) { console.error('Delete error:', delErr.message); process.exit(1) }
+  console.log(`  Deleted ${delCount ?? '?'} existing legs`)
 
-  const hasLeg = new Set(existingLegs?.map(l => `${l.trade_id}|${l.action}`) ?? [])
-  console.log(`  ${hasLeg.size / 2 | 0} trades already have legs`)
+  // No existing legs after clear
+  const hasLeg = new Set()
 
   // ── Build legs array ────────────────────────────────────────────────────────
   const legs = []
